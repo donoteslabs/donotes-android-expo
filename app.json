@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "octopusOne",
+    "userInterfaceStyle": "automatic",
+    "slug": "octopusone",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8f901b3e-b8f1-4a02-8d74-1b8b8be3024f"
+      }
+    },
+    "owner": "donotes",
+    "android": {
+      "package": "com.donotes.octopusone"
+    }
+  }
+}
