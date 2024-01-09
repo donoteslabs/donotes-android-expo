@@ -4,18 +4,34 @@
     "userInterfaceStyle": "automatic",
     "slug": "octopusone",
     "version": "1.0.0",
+    "icon": "./assets/icon.png",
+    
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff",
+        "package": "com.donotes.octopusone"
+
+      },
+      "package": "com.donotes.donotesv1octopusbeta1"
+    },
     "extra": {
       "eas": {
         "projectId": "8f901b3e-b8f1-4a02-8d74-1b8b8be3024f"
       }
     },
     "owner": "donotes",
-    "android": {
-      "package": "com.donotes.octopusone"
-    },
     "plugins": [
       [
         "expo-build-properties",

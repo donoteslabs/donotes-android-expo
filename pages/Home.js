@@ -11,13 +11,19 @@ function Home({themes, setShowTitle, setTitleBack, setTitleText, setLocation, lo
   socket,
   fN,
   fP,
+  folderParent,
+  setFolderParent,
   sessionId,
   nID,
   nN,
 }) {
-  const [folderParent, setFolderParent] = React.useState('root');
-  const [upParent, setUpParent] = React.useState('root');
+  React.useEffect(()=>{
+    console.log('Folder: ',folderParent);
+    console.log('Up Folder: ',upParent);
+  }, [folderParent])
   const [refreshing, setRefreshing] = React.useState(false);
+
+  const [upParent, setUpParent] = React.useState('root');
   React.useEffect(()=>{
     console.log(loggedIn);
     if(loggedIn === false) {

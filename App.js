@@ -109,6 +109,9 @@ export default function App() {
   const [nN, sNN] = React.useState([]);
   const [nP, sNP] = React.useState([]);
   const [fP, sFP] = React.useState([]);
+  
+  const [folderParent, setFolderParent] = React.useState('root');
+  const [upParent, setUpParent] = React.useState('root');
   const [noteName, setNoteName] = React.useState(null);
   const [noteContent, setNoteContent] = React.useState(null);
   const [nID, sNID] = React.useState([]);
@@ -248,7 +251,7 @@ const checkFalse = false;
       drawerPosition='right'
       renderNavigationView={navigationView}>
     {showTitle && <NavBar mainOpenDrawer={mainOpenDrawer} themes={themes} loggedIn={loggedIn} setLoggedIn={setLoggedIn} titleText={titleText} titleBack={titleBack} setLocation={setLocation}/>}
-    <WebSocketComponent setNoteName={setNoteName} setNoteContent={setNoteContent}  setClientId={setClientId} clientId={clientId} setNum={setNum} setInit={setInit} setHomeLoaded={setHomeLoaded} sFID={sFID} sFN={sFN} sFP={sFP} sNID={sNID} sNN={sNN} sNP={sNP} setLoaderVisible={setloaderVisible} setProfilePic={setProfilePic} setUsername={setUsername} sessionId={sessionId} setLoggedIn={setLoggedIn} setLocation={setLocation} setDialogMessage={setDialogMessage} setDialogTitle={setDialogTitle} showDialog={showDialog} setDialogVisible={setDialogVisible} socket={socket} setSocket={setSocket} sessionId={sessionId}/>
+    <WebSocketComponent parentSocket={socket} location={location} folderParent={folderParent}  setNoteName={setNoteName} setNoteContent={setNoteContent}  setClientId={setClientId} clientId={clientId} setNum={setNum} setInit={setInit} setHomeLoaded={setHomeLoaded} sFID={sFID} sFN={sFN} sFP={sFP} sNID={sNID} sNN={sNN} sNP={sNP} setLoaderVisible={setloaderVisible} setProfilePic={setProfilePic} setUsername={setUsername} sessionId={sessionId} setLoggedIn={setLoggedIn} setLocation={setLocation} setDialogMessage={setDialogMessage} setDialogTitle={setDialogTitle} showDialog={showDialog} setDialogVisible={setDialogVisible} socket={socket} setSocket={setSocket} sessionId={sessionId}/>
        
     {location == 'edit' && 
       <View style={{flex: 1, height: 800}}>
@@ -272,7 +275,7 @@ const checkFalse = false;
           </Dialog>
         </Portal>
         {/**End dialog */}
-        {location == 'home' && <Home socket={socket} num={num} sessionId={sessionId} setActiveNote={setActiveNote} loaded={homeLoaded} fID={fId} fN={fN} fP={fP} nID={nID} nN={nN} nP={nP}  loggedIn={loggedIn} themes={themes} titleText={titleText} setTitleText={setTitleText} setShowTitle={setShowTitle} setTitleBack={setTitleBack} setLocation={setLocation}/>}
+        {location == 'home' && <Home folderParent={folderParent} setFolderParent={setFolderParent} upParent={setUpParent} setUpParent={setUpParent} socket={socket} num={num} sessionId={sessionId} setActiveNote={setActiveNote} loaded={homeLoaded} fID={fId} fN={fN} fP={fP} nID={nID} nN={nN} nP={nP}  loggedIn={loggedIn} themes={themes} titleText={titleText} setTitleText={setTitleText} setShowTitle={setShowTitle} setTitleBack={setTitleBack} setLocation={setLocation}/>}
         {location == 'note' && <Note setLocation={setLocation} noteName={noteName} noteContent={noteContent} setNoteName={setNoteName} setNoteContent={setNoteContent} clientId={clientId} setInit={setInit} init={init} sessionId={sessionId} socket={socket} activeNote={activeNote} setActiveNote={setActiveNote} loggedIn={loggedIn} themes={themes} titleText={titleText} setTitleText={setTitleText} setShowTitle={setShowTitle} setTitleBack={setTitleBack} />}
         {location == 'login' && <Login setloaderVisible={setloaderVisible} loggedIn={loggedIn} sessionId={sessionId} socket={socket} themes={themes} setTitleText={setTitleText}  themes={themes} setLocation={setLocation} setShowTitle={setShowTitle} /> }
         {location == 'signup' && <SignUp setloaderVisible={setloaderVisible} loggedIn={loggedIn} sessionId={sessionId} socket={socket} themes={themes} setTitleText={setTitleText} setLocation={setLocation} setShowTitle={setShowTitle} setTitleBack={setTitleBack}/> }

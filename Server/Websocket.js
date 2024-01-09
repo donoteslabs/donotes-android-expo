@@ -15,8 +15,11 @@ function decompressText(compressedText) {
 const generateSessionId = () => {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 };
-function WebSocketComponent({setNoteName, setNoteContent, setInit, clientId, setClientId, setSocket, setDialogMessage, showDialog,activeNote, setNum,setHomeLoaded ,setDialogTitle,sFID,sFN, sFP, sNID, sNN, sNP, setLoaderVisible ,sessionId, setLoggedIn, setUsername, setProfilePic}) {
+function WebSocketComponent({parentSocket,setNoteName, setNoteContent, setInit, clientId, setClientId, setSocket, setDialogMessage, showDialog,activeNote, setNum,setHomeLoaded ,setDialogTitle,sFID,sFN, sFP, sNID, sNN, sNP, setLoaderVisible ,sessionId, setLoggedIn, setUsername, setProfilePic}) {
   const [singleId, setSingleId] = useState(generateSessionId());
+
+
+
   useEffect(()=>{
     console.log(singleId);
   }, [singleId]);useEffect(() => {
@@ -35,10 +38,21 @@ function WebSocketComponent({setNoteName, setNoteContent, setInit, clientId, set
   }, []);
   
   useEffect(() => {
+    
+    setInterval(()=>{
+      if(parentSocket) {
+      
+      if (parentSocket.readyState === WebSocket.OPEN) {
+        parentSocket.send(JSON.stringify({type: 'heartbeat'}));
+      }else {
+        setupWebSocket();
+      }
+    }
+    }, 500)
     if(sessionId) {
     let socket = new WebSocket('wss://ws-server.donotes.app');
     let reconnectInterval;
-
+    
     const setupWebSocket = () => {
       // WebSocket Event Handlers
       socket.onopen = () => {
